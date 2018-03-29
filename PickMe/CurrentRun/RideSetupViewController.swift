@@ -109,23 +109,46 @@ class RideSetupViewController: UIViewController {
     }
     
     @objc private func handleEndSetup() {
-        if validateEnteredData() {
+//        if validateEnteredData() {
             view.endEditing(true)
-            
-            let rideStartedViewController = UINavigationController(rootViewController: RideStartedViewController())
-            present(rideStartedViewController, animated: true, completion: nil)
-        }
+        let newRide = CurrentRideDetails(id: "\(Date())", locStart: "A", locEnd: "B", passangers: 4, timeStart: "\(Date())")
+        CoreDataManager.shared.createRide(currentRideDetails: newRide)
+        
+        let rideStartedViewController = RideStartedViewController()
+        rideStartedViewController.newRide = newRide
+        
+        let navController = UINavigationController(rootViewController: rideStartedViewController)
+        present(navController, animated: true, completion: nil)
+//        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Setup"
+        navigationItem.title = "Ride Setup"
         
         view.backgroundColor = .darkBlue
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeKeyboard)))
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Load", style: .plain, target: self, action: #selector(loadData))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Delete DB", style: .plain, target: self, action: #selector(eraseDB))
+        
         setupViews()
+    }
+    
+    @objc private func loadData() {
+        let rides = CoreDataManager.shared.fetchRides()
+        print(rides)
+//        let locations = rides.first?.locations
+//        print(locations)
+//        print(rides)
+//        for i in (rides.first?.locations.ti)! {
+//            print((i as AnyObject).latitude)
+//        }
+    }
+    
+    @objc private func eraseDB() {
+        CoreDataManager.shared.deleteDB()
     }
     
     @objc private func removeKeyboard() {
@@ -140,7 +163,7 @@ class RideSetupViewController: UIViewController {
         
         locationEndField.alpha = 0
         passangersField.alpha = 0
-        startRideButton.alpha = 0
+//        startRideButton.alpha = 0
         
         locationStartField.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 44)
         

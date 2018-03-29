@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         
+        let locationManager = LocationManager.shared
+        locationManager.requestWhenInUseAuthorization()
+        
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().barTintColor = .tealColor
@@ -33,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //
         //        window?.rootViewController = MainTabBarViewController()
         
-//        window?.rootViewController = UINavigationController(rootViewController: RideSetupViewController())
-        window?.rootViewController = UINavigationController(rootViewController: RideStartedViewController())
+        window?.rootViewController = UINavigationController(rootViewController: RideSetupViewController())
+//        window?.rootViewController = UINavigationController(rootViewController: RideStartedViewController())
         
         return true
     }
