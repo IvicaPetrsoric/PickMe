@@ -26,7 +26,7 @@ class DriverDetailViewController: UIViewController {
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name:".localized
         label.font = UIFont.boldSystemFont(ofSize: 13)
@@ -34,7 +34,7 @@ class DriverDetailViewController: UIViewController {
         return label
     }()
     
-    let driverNameTextField: UITextField = {
+    private let driverNameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter name".localized
         textField.backgroundColor = .lightBlue
@@ -45,7 +45,7 @@ class DriverDetailViewController: UIViewController {
         return textField
     }()
     
-    let ageLabel: UILabel = {
+    private let ageLabel: UILabel = {
         let label = UILabel()
         label.text = "Age:".localized
         label.font = UIFont.boldSystemFont(ofSize: 13)
@@ -53,7 +53,7 @@ class DriverDetailViewController: UIViewController {
         return label
     }()
     
-    let driverAgeTextField: UITextField = {
+    private let driverAgeTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter age".localized
         textField.backgroundColor = .lightBlue
@@ -65,7 +65,7 @@ class DriverDetailViewController: UIViewController {
         return textField
     }()
     
-    let carRegLabel: UILabel = {
+    private let carRegLabel: UILabel = {
         let label = UILabel()
         label.text = "Car registration:".localized
         label.font = UIFont.boldSystemFont(ofSize: 13)
@@ -73,7 +73,7 @@ class DriverDetailViewController: UIViewController {
         return label
     }()
     
-    let driverCarRegTextField: UITextField = {
+    private let driverCarRegTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter car registration".localized
         textField.backgroundColor = .lightBlue
@@ -98,13 +98,26 @@ class DriverDetailViewController: UIViewController {
         setupViews()
         roundCornerPickImage()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        updateDB()
+    }
         
     @objc private func removeKeyboard() {
         view.endEditing(true)
     }
     
+    func roundCornerPickImage() {
+        plusPhotoButton.layer.cornerRadius = 35
+        plusPhotoButton.layer.masksToBounds = true
+        plusPhotoButton.layer.borderColor = UIColor.lightBlue.cgColor
+        plusPhotoButton.layer.borderWidth = 3
+    }
+    
     private func fetchDriverData() {
         driver = CoreDataManager.shared.loadDriver()
+        
         guard let name = driver?.name else { return }
         guard let age = driver?.age else { return }
         guard let registration = driver?.registration else { return }
@@ -118,9 +131,7 @@ class DriverDetailViewController: UIViewController {
         plusPhotoButton.setImage(UIImage(data: image)?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        
+    private func updateDB() {
         guard let name = driverNameTextField.text else { return }
         guard let age = driverAgeTextField.text else { return }
         guard let registration = driverCarRegTextField.text else { return }
@@ -129,12 +140,27 @@ class DriverDetailViewController: UIViewController {
         guard let uploadData = UIImagePNGRepresentation(image) else { return }
         
         let dataToSave = DriverData(name: name, age: age, registration: registration, image: uploadData)
-
-        if let driver = driver {
-            CoreDataManager.shared.updateDriver(data: dataToSave, driver: driver)
-        } else {
-            CoreDataManager.shared.createDriver(data: dataToSave)
+        
+        if validateIfNeedUpdate() {
+            if let driver = driver {
+                CoreDataManager.shared.updateDriver(data: dataToSave, driver: driver)
+            } else {
+                CoreDataManager.shared.createDriver(data: dataToSave)
+            }
         }
+    }
+    
+    private func validateIfNeedUpdate() -> Bool {
+        guard let driverName = driver?.name, driverName ==  driverNameTextField.text else { return true }
+        guard let driverAge = driver?.age, driverAge ==  driverAgeTextField.text else { return true }
+        guard let driverRegistration = driver?.registration, driverRegistration ==  driverCarRegTextField.text else { return true }
+        guard let driverImage = driver?.image,
+            let image = plusPhotoButton.imageView?.image,
+            let uploadData = UIImagePNGRepresentation(image),
+            driverImage == uploadData
+            else { return true }
+
+        return false
     }
     
     private func setupViews() {
@@ -159,26 +185,6 @@ class DriverDetailViewController: UIViewController {
         
         stackViewTextFields.anchor(top: stackViewLabels.topAnchor, left: stackViewLabels.rightAnchor, bottom: stackViewLabels.bottomAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 0)
     }
-    
-    private func roundCornerPickImage() {
-        plusPhotoButton.layer.cornerRadius = 35
-        plusPhotoButton.layer.masksToBounds = true
-        plusPhotoButton.layer.borderColor = UIColor.lightBlue.cgColor
-        plusPhotoButton.layer.borderWidth = 3
-    }
-    
 }
 
-extension DriverDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
-            plusPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
-        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage{
-            plusPhotoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
-        }
-        
-        roundCornerPickImage()
-        dismiss(animated: true, completion: nil)
-    }
-}
+

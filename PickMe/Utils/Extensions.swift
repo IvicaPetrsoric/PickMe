@@ -17,7 +17,6 @@ extension UIColor{
     static let midBlue = UIColor(red: 100/255, green: 170/255, blue: 245/255, alpha: 1)
     static let lightGreen = UIColor(red: 150/255, green: 240/255, blue: 120/255, alpha: 1)
     static let lightOrange = UIColor(red: 230/255, green: 148/255, blue: 30/255, alpha: 1)
-
     
 }
 
@@ -55,16 +54,13 @@ extension UIView{
 
 extension UIViewController{
     
-    enum alertMessage: String{
-        case errorWebConnection = "Check your Web connection!"
-        case errorWebAndURL = "Ooops, check your Web connection and Feed URL!"
-        case errorFeedExsist = "You already have this Feed!"
-        case errorWithParsing = "Couldn't read that Feed, check again if URL was correct!"
+    enum AlertMessage: String{
+        case rideHasNoLocations = "This ride has no locations saved"
     }
     
     func showAllert(message: String){
-        let alert = UIAlertController(title: "Notice", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: "Error".localized, message: message.localized, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK".localized, style: UIAlertActionStyle.default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     
@@ -74,10 +70,6 @@ extension String {
     
     var localized: String {
         return NSLocalizedString(self, comment: "")
-    }
-    
-    func localized(comment: String = "") -> String {
-        return NSLocalizedString(self, comment: comment)
     }
     
 }

@@ -89,9 +89,9 @@ class RideSetupViewController: UIViewController {
     }
     
     private func validateEnteredData() -> Bool{
-        guard let startLocation = locationStartField.text, startLocation != " " && startLocation.count > 0 else { return false}
-        guard let endLocation = locationEndField.text, endLocation != " " && endLocation.count > 0 else { return false}
-        guard let totalPassanger = passangersField.text, totalPassanger != " " && totalPassanger.count > 0 else { return false}
+        guard let startLocation = locationStartField.text, startLocation != " " && startLocation.count > 0 else { return false }
+        guard let endLocation = locationEndField.text, endLocation != " " && endLocation.count > 0 else { return false }
+        guard let totalPassanger = passangersField.text, totalPassanger != " " && totalPassanger.count > 0 else { return false }
         
         return true
     }
@@ -127,9 +127,6 @@ class RideSetupViewController: UIViewController {
         
         setupViews()
         
-//        let server = Server()
-//        server.sendGPS(data: nil)
-//        server.sendWorlflowAction(data: nil)
     }
     
     @objc private func showDriverProfile() {
@@ -147,21 +144,32 @@ class RideSetupViewController: UIViewController {
     }
     
     private func setupViews() {
-        view.addSubview(locationStartField)
-        view.addSubview(locationEndField)
-        view.addSubview(passangersField)
+        
+        let stackViewLabels = UIStackView(arrangedSubviews: [locationStartField, locationEndField, passangersField])
+        stackViewLabels.axis = .vertical
+        stackViewLabels.distribution = .fillEqually
+        stackViewLabels.spacing = 8
+
+        
+//        view.addSubview(locationStartField)
+//        view.addSubview(locationEndField)
+//        view.addSubview(passangersField)
+        view.addSubview(stackViewLabels)
         view.addSubview(startRideButton)
         
         locationEndField.alpha = 0
         passangersField.alpha = 0
+
         
-        locationStartField.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 44)
+        stackViewLabels.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 150)
         
-        locationEndField.anchor(top: locationStartField.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 44)
+//        locationStartField.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 44)
+//
+//        locationEndField.anchor(top: locationStartField.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 44)
+//
+//        passangersField.anchor(top: locationEndField.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 44)
         
-        passangersField.anchor(top: locationEndField.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 44)
-        
-        startRideButton.anchor(top: passangersField.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 24, paddingLeft: 44, paddingBottom: 0, paddingRight: 44, width: 0, height: 52)
+        startRideButton.anchor(top: stackViewLabels.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 24, paddingLeft: 44, paddingBottom: 0, paddingRight: 44, width: 0, height: 52)
     }
 
 }

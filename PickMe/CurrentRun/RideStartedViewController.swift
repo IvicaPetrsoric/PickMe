@@ -254,10 +254,10 @@ class RideStartedViewController: UIViewController {
     private var formattedDistance = "0"
     
     private func updateDisplay() {
-        let components = Calendar.current.dateComponents([.hour, .minute, .second], from: startTime, to: Date())
+//        let components = Calendar.current.dateComponents([.hour, .minute, .second], from: startTime, to: Date())
         
         formattedDistance = FormatDisplay.distance(distance)
-        let formattedTime = FormatDisplay.time(components.second!)
+//        let formattedTime = FormatDisplay.time(components.second!)
         
 //        currentDistance = formattedDistance
         
@@ -265,7 +265,7 @@ class RideStartedViewController: UIViewController {
 
         
         var displayText = "Distance:  \(formattedDistance) \n"
-        displayText += "Time:  \(formattedTime)\n"
+//        displayText += "Time:  \(formattedTime)\n"
         displayText += "Lat: \(lastLocation.latitude)\n"
         displayText += "Long: \(lastLocation.longitude)"
         detailsLabel.text = displayText

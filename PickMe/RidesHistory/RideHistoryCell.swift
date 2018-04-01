@@ -33,7 +33,7 @@ class RideHistoryCell: BaseCell {
         }
     }
     
-    let backView: UIView = {
+    private let backView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 8
         view.layer.masksToBounds = true
@@ -41,21 +41,21 @@ class RideHistoryCell: BaseCell {
         return view
     }()
     
-    let locationLabel: UILabel = {
+    private let locationLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
     
-    let passangersLabel: UILabel = {
+    private let passangersLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textAlignment = .left
         return label
     }()
     
-    let timestampLabel: UILabel = {
+    private let timestampLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textAlignment = .right
