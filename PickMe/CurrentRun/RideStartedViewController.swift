@@ -83,6 +83,9 @@ class RideStartedViewController: UIViewController {
     @objc private func handlepassangerPicked() {
         navigationItem.title = "Status: New Passanger"
         stopMonitoringLocation()
+        updateWorkflowAction(byStatus: .pickedUp)
+
+
         if let pinCoor = locationList.last?.coordinate{
             dropPinZoomIn(placemark: MKPlacemark(coordinate: pinCoor))
         } else if let pinCoor = locationManager.location?.coordinate {
@@ -99,6 +102,7 @@ class RideStartedViewController: UIViewController {
     
     @objc private func handleStopOver() {
         navigationItem.title = "Status: Stop Over"
+        updateWorkflowAction(byStatus: .stopOver)
 
         UIView.animate(withDuration: 0.3) {
             self.stopOverButton.transform = CGAffineTransform(translationX: -self.view.frame.width / 2, y: 0)
@@ -110,6 +114,8 @@ class RideStartedViewController: UIViewController {
     @objc private func handleContineRide() {
         navigationItem.title = "Status: Driving"
         resumeMonitoringLocation()
+        updateWorkflowAction(byStatus: .continueRide)
+
         
         UIView.animate(withDuration: 0.3) {
             self.balackBackgroundMask.alpha = 0
@@ -118,7 +124,23 @@ class RideStartedViewController: UIViewController {
         }
     }
     
+    private func updateWorkflowAction(byStatus: RideStatus) {
+        guard let lastLocation = locationList.last?.coordinate else { return }
+        let actionData = CurrentRideLocations(bookingId: currentRideId,
+                                              status: RideStatus.pickedUp.rawValue,
+                                              sendOnServer: false,
+                                              latitude: lastLocation.latitude,
+                                              longitude: lastLocation.longitude,
+                                              timestamp: Date(),
+                                              distance: "")
+        
+        service.sendWorlflowAction(data: actionData)
+    }
+    
+    
+    
     @objc private func handleEndRide() {
+        updateWorkflowAction(byStatus: .stopOver)
         dismiss(animated: true, completion: nil)
     }
     
@@ -152,12 +174,21 @@ class RideStartedViewController: UIViewController {
         continueRideButton.anchor(top: nil, left: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: view.frame.width / 2 - 16, height: 44)
         continueRideButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        detailsLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 0, height: 88)
+        detailsLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 0, height: 100)
     }
     
+    enum RideStatus: String {
+        case startRide
+        case pickedUp
+        case stopOver
+        case continueRide
+        case endRide
+    }
+    
+    var currentState = RideStatus.startRide
     
     
-    
+    private var service = Server()
     
     var newRide: CurrentRideDetails?
 //    private var locationsData = [CurrentRideLocations]()
@@ -170,6 +201,8 @@ class RideStartedViewController: UIViewController {
     
     private var startTime = Date()
     
+    var currentRideId = Int()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -178,14 +211,9 @@ class RideStartedViewController: UIViewController {
         navigationItem.title = "Status: Driving"
         
         setupViews()
-        
         startRide()
     }
-    
-    func getRideDuration() {
-
-    }
-    
+        
     private func startRide() {
         mapView.removeOverlays(mapView.overlays)
         startTime = Date()
@@ -197,11 +225,7 @@ class RideStartedViewController: UIViewController {
             self.eachSecond()
         }
         startLocationUpdates()
-
-    }
-    
-    func timerStatus() {
-        
+        updateWorkflowAction(byStatus: .startRide)
     }
     
     func stopMonitoringLocation() {
@@ -215,10 +239,7 @@ class RideStartedViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.eachSecond()
         }
-
     }
-    
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
@@ -229,15 +250,24 @@ class RideStartedViewController: UIViewController {
         updateDisplay()
     }
     
+    private var formattedDistance = "0"
+    
     private func updateDisplay() {
         let components = Calendar.current.dateComponents([.hour, .minute, .second], from: startTime, to: Date())
         
-        let formattedDistance = FormatDisplay.distance(distance)
+        formattedDistance = FormatDisplay.distance(distance)
         let formattedTime = FormatDisplay.time(components.second!)
         
-        let currentDistance = "Distance:  \(formattedDistance) \n"
-        let currentTime = "Time:  \(formattedTime)"
-        detailsLabel.text = currentDistance + currentTime
+//        currentDistance = formattedDistance
+        
+        guard let lastLocation = locationList.last?.coordinate else { return }
+
+        
+        var displayText = "Distance:  \(formattedDistance) \n"
+        displayText += "Time:  \(formattedTime)\n"
+        displayText += "Lat: \(lastLocation.latitude)\n"
+        displayText += "Long: \(lastLocation.longitude)"
+        detailsLabel.text = displayText
     }
     
     // u sec
@@ -259,9 +289,34 @@ class RideStartedViewController: UIViewController {
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
         annotation.title = "Passanger"
+        
+        let newLocationData = CurrentRideLocations(bookingId: currentRideId,
+                                                   status: RideStatus.pickedUp.rawValue,
+                                                   sendOnServer: false,
+                                                   latitude: placemark.coordinate.latitude,
+                                                   longitude: placemark.coordinate.longitude,
+                                                   timestamp: Date(),
+                                                   distance: "\(formattedDistance)")
+        CoreDataManager.shared.createRideLocationDetails(forLocationData: newLocationData)
+        
+        
         mapView.addAnnotation(annotation)
     }
     
+    private func updateGPSposition(location: CLLocation) {
+        var newLocationData = CurrentRideLocations(bookingId: currentRideId,
+                                                   status: "",
+                                                   sendOnServer: false,
+                                                   latitude: location.coordinate.latitude,
+                                                   longitude: location.coordinate.longitude,
+                                                   timestamp: Date(),
+                                                   distance: "\(formattedDistance)")
+        service.sendGPS(data: newLocationData) { (statusCompletion: Bool) in
+            newLocationData.sendOnServer = statusCompletion
+            CoreDataManager.shared.createRideLocationDetails(forLocationData: newLocationData)
+        }
+
+    }
 }
 
 extension RideStartedViewController: CLLocationManagerDelegate {
@@ -281,12 +336,7 @@ extension RideStartedViewController: CLLocationManagerDelegate {
             }
             
             locationList.append(newLocation)
-            
-            let newLocationData = CurrentRideLocations(status: navigationItem.title!,
-                latitude: newLocation.coordinate.latitude,
-                longitude: newLocation.coordinate.longitude,
-                timestamp: "\(Date())")
-            CoreDataManager.shared.createRideLocationDetails(forLocationData: newLocationData)
+            updateGPSposition(location: newLocation)
         }
     }
 }

@@ -25,7 +25,7 @@ class RideSetupViewController: UIViewController {
     let locationStartField: UITextField = {
         let textField = UITextField()
         textField.placeholder = placeholderTextFields.start.rawValue
-        textField.backgroundColor = UIColor.lightBlue
+        textField.backgroundColor = .lightBlue
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
         textField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
@@ -37,7 +37,7 @@ class RideSetupViewController: UIViewController {
     let locationEndField: UITextField = {
         let textField = UITextField()
         textField.placeholder = placeholderTextFields.end.rawValue
-        textField.backgroundColor = UIColor.lightBlue
+        textField.backgroundColor = .lightBlue
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
         textField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
@@ -49,20 +49,20 @@ class RideSetupViewController: UIViewController {
     let passangersField: UITextField = {
         let textField = UITextField()
         textField.placeholder = placeholderTextFields.passangers.rawValue
-        textField.backgroundColor = UIColor.lightBlue
+        textField.backgroundColor = .lightBlue
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
         textField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         textField.layer.cornerRadius = 8
         textField.layer.masksToBounds = true
-        textField.keyboardType = UIKeyboardType.decimalPad
+        textField.keyboardType = UIKeyboardType.numberPad
         return textField
     }()
     
     let startRideButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Start Ride", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 32)
         button.backgroundColor = .lightGreen
         button.layer.cornerRadius = 8
@@ -111,13 +111,17 @@ class RideSetupViewController: UIViewController {
     @objc private func handleEndSetup() {
 //        if validateEnteredData() {
             view.endEditing(true)
-        let newRide = CurrentRideDetails(id: "\(Date())", locStart: "A", locEnd: "B", passangers: 4, timeStart: "\(Date())")
+        let currentRideId = 1
+        
+        let newRide = CurrentRideDetails(bookingId: currentRideId, locStart: "A", locEnd: "B", passangers: 4, timeStart: Date())
         CoreDataManager.shared.createRide(currentRideDetails: newRide)
         
         let rideStartedViewController = RideStartedViewController()
         rideStartedViewController.newRide = newRide
+        rideStartedViewController.currentRideId = currentRideId
         
         let navController = UINavigationController(rootViewController: rideStartedViewController)
+        
         present(navController, animated: true, completion: nil)
 //        }
     }
@@ -130,10 +134,24 @@ class RideSetupViewController: UIViewController {
         view.backgroundColor = .darkBlue
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeKeyboard)))
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Load", style: .plain, target: self, action: #selector(loadData))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Delete DB", style: .plain, target: self, action: #selector(eraseDB))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "profileUnselected"), style: .plain, target: self, action: #selector(showDriverProfile))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "History", style: .plain, target: self, action: #selector(showRideHistorList))
         
         setupViews()
+        
+//        let server = Server()
+//        server.sendGPS(data: nil)
+//        server.sendWorlflowAction(data: nil)
+    }
+    
+    @objc private func showDriverProfile() {
+        let driverProfile = DriverDetailViewController()
+        navigationController?.pushViewController(driverProfile, animated: true)
+    }
+    
+    @objc private func showRideHistorList() {
+        let rideHistory = RideHistoryViewController()
+        navigationController?.pushViewController(rideHistory, animated: true)
     }
     
     @objc private func loadData() {

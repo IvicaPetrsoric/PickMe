@@ -10,9 +10,12 @@ import Foundation
 
 struct CurrentRideLocations {
     
+    let bookingId: Int
     let status: String
+    var sendOnServer: Bool
     let latitude: Double
     let longitude: Double
-    let timestamp: String
+    let timestamp: Date
+    let distance: String
     
 }

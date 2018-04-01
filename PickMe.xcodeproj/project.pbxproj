@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9E099367206C58BF004C4F14 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E099366206C58BF004C4F14 /* Server.swift */; };
+		9E16368C2070521A00E46971 /* LanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16368B2070521A00E46971 /* LanguagesViewController.swift */; };
 		9E4940B0206D97D0006B232E /* CurrentRideLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4940AF206D97D0006B232E /* CurrentRideLocations.swift */; };
-		9E4940B3206DA448006B232E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4940B2206DA448006B232E /* MainTabBarController.swift */; };
 		9E4940B5206DA4BF006B232E /* RideHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4940B4206DA4BF006B232E /* RideHistoryViewController.swift */; };
+		9E4940BA206DAAA9006B232E /* RideHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4940B9206DAAA9006B232E /* RideHistoryCell.swift */; };
 		9EA3B823206C139800801FDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3B822206C139800801FDB /* AppDelegate.swift */; };
 		9EA3B825206C139800801FDB /* RideSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3B824206C139800801FDB /* RideSetupViewController.swift */; };
 		9EA3B828206C139800801FDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EA3B826206C139800801FDB /* Main.storyboard */; };
@@ -20,6 +21,11 @@
 		9EA3B843206C139900801FDB /* PickMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3B842206C139900801FDB /* PickMeUITests.swift */; };
 		9EA3B852206C15C400801FDB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3B851206C15C400801FDB /* Extensions.swift */; };
 		9EA3B856206C28E500801FDB /* RideStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA3B855206C28E500801FDB /* RideStartedViewController.swift */; };
+		9ED26007206E3CE30027D76C /* RideHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED26006206E3CE30027D76C /* RideHistoryDetailsViewController.swift */; };
+		9ED2600A206E7CBC0027D76C /* RideHistoryDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED26009206E7CBC0027D76C /* RideHistoryDetailsCell.swift */; };
+		9ED2600C206E95130027D76C /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2600B206E95130027D76C /* BaseCell.swift */; };
+		9ED2600E206E9B420027D76C /* DriverDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2600D206E9B420027D76C /* DriverDetailViewController.swift */; };
+		9ED26011206EEDFA0027D76C /* DriverData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED26010206EEDF90027D76C /* DriverData.swift */; };
 		9EE29DB7206CE2AA00761A5E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE29DB6206CE2AA00761A5E /* LocationManager.swift */; };
 		9EE29DBA206CE3CC00761A5E /* PickMeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EE29DB8206CE3CC00761A5E /* PickMeModel.xcdatamodeld */; };
 		9EE29DBD206CE3EF00761A5E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE29DBC206CE3EF00761A5E /* CoreDataManager.swift */; };
@@ -48,9 +54,10 @@
 
 /* Begin PBXFileReference section */
 		9E099366206C58BF004C4F14 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		9E16368B2070521A00E46971 /* LanguagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesViewController.swift; sourceTree = "<group>"; };
 		9E4940AF206D97D0006B232E /* CurrentRideLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRideLocations.swift; sourceTree = "<group>"; };
-		9E4940B2206DA448006B232E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		9E4940B4206DA4BF006B232E /* RideHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideHistoryViewController.swift; sourceTree = "<group>"; };
+		9E4940B9206DAAA9006B232E /* RideHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideHistoryCell.swift; sourceTree = "<group>"; };
 		9EA3B81F206C139800801FDB /* PickMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EA3B822206C139800801FDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EA3B824206C139800801FDB /* RideSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideSetupViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +73,11 @@
 		9EA3B844206C139900801FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9EA3B851206C15C400801FDB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9EA3B855206C28E500801FDB /* RideStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideStartedViewController.swift; sourceTree = "<group>"; };
+		9ED26006206E3CE30027D76C /* RideHistoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideHistoryDetailsViewController.swift; sourceTree = "<group>"; };
+		9ED26009206E7CBC0027D76C /* RideHistoryDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideHistoryDetailsCell.swift; sourceTree = "<group>"; };
+		9ED2600B206E95130027D76C /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		9ED2600D206E9B420027D76C /* DriverDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverDetailViewController.swift; sourceTree = "<group>"; };
+		9ED26010206EEDF90027D76C /* DriverData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverData.swift; sourceTree = "<group>"; };
 		9EE29DB6206CE2AA00761A5E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		9EE29DB9206CE3CC00761A5E /* PickMeModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PickMeModel.xcdatamodel; sourceTree = "<group>"; };
 		9EE29DBC206CE3EF00761A5E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -108,6 +120,14 @@
 			path = "Server API";
 			sourceTree = "<group>";
 		};
+		9E16368D2070522C00E46971 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				9E16368B2070521A00E46971 /* LanguagesViewController.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		9E4940B1206D99D0006B232E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				9E4940B4206DA4BF006B232E /* RideHistoryViewController.swift */,
+				9E4940B9206DAAA9006B232E /* RideHistoryCell.swift */,
+				9ED26008206E7C9B0027D76C /* RideHistoryDetails */,
 			);
 			path = RidesHistory;
 			sourceTree = "<group>";
@@ -148,8 +170,10 @@
 		9EA3B821206C139800801FDB /* PickMe */ = {
 			isa = PBXGroup;
 			children = (
+				9EA3B822206C139800801FDB /* AppDelegate.swift */,
 				9EA3B854206C162E00801FDB /* CurrentRun */,
 				9E4940B6206DA4C3006B232E /* RidesHistory */,
+				9ED2600F206E9B460027D76C /* DriverDetails */,
 				9E099368206C58CB004C4F14 /* Server API */,
 				9EA3B853206C15CD00801FDB /* Utils */,
 				9EE29DBB206CE3D100761A5E /* CoreData */,
@@ -180,9 +204,8 @@
 		9EA3B850206C13D800801FDB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9EA3B822206C139800801FDB /* AppDelegate.swift */,
-				9EA3B826206C139800801FDB /* Main.storyboard */,
 				9EA3B829206C139800801FDB /* Assets.xcassets */,
+				9EA3B826206C139800801FDB /* Main.storyboard */,
 				9EA3B82B206C139800801FDB /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
@@ -195,7 +218,7 @@
 				9EE29DB6206CE2AA00761A5E /* LocationManager.swift */,
 				9EE29DBE206CF65C00761A5E /* UnitConverterPace.swift */,
 				9EE29DC0206CF86200761A5E /* FormatDisplay.swift */,
-				9E4940B2206DA448006B232E /* MainTabBarController.swift */,
+				9ED2600B206E95130027D76C /* BaseCell.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -209,6 +232,25 @@
 				9E4940B1206D99D0006B232E /* Model */,
 			);
 			path = CurrentRun;
+			sourceTree = "<group>";
+		};
+		9ED26008206E7C9B0027D76C /* RideHistoryDetails */ = {
+			isa = PBXGroup;
+			children = (
+				9ED26006206E3CE30027D76C /* RideHistoryDetailsViewController.swift */,
+				9ED26009206E7CBC0027D76C /* RideHistoryDetailsCell.swift */,
+			);
+			path = RideHistoryDetails;
+			sourceTree = "<group>";
+		};
+		9ED2600F206E9B460027D76C /* DriverDetails */ = {
+			isa = PBXGroup;
+			children = (
+				9ED2600D206E9B420027D76C /* DriverDetailViewController.swift */,
+				9ED26010206EEDF90027D76C /* DriverData.swift */,
+				9E16368D2070522C00E46971 /* New Group */,
+			);
+			path = DriverDetails;
 			sourceTree = "<group>";
 		};
 		9EE29DBB206CE3D100761A5E /* CoreData */ = {
@@ -359,18 +401,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ED2600C206E95130027D76C /* BaseCell.swift in Sources */,
 				9E4940B5206DA4BF006B232E /* RideHistoryViewController.swift in Sources */,
+				9E16368C2070521A00E46971 /* LanguagesViewController.swift in Sources */,
+				9ED2600A206E7CBC0027D76C /* RideHistoryDetailsCell.swift in Sources */,
 				9E099367206C58BF004C4F14 /* Server.swift in Sources */,
 				9E4940B0206D97D0006B232E /* CurrentRideLocations.swift in Sources */,
 				9EE29DC3206CF9C600761A5E /* RideStartView.swift in Sources */,
 				9EA3B856206C28E500801FDB /* RideStartedViewController.swift in Sources */,
 				9EE29DB7206CE2AA00761A5E /* LocationManager.swift in Sources */,
+				9E4940BA206DAAA9006B232E /* RideHistoryCell.swift in Sources */,
 				9EE29DC5206D7E1400761A5E /* CurrentRideDetails.swift in Sources */,
+				9ED2600E206E9B420027D76C /* DriverDetailViewController.swift in Sources */,
 				9EE29DC1206CF86200761A5E /* FormatDisplay.swift in Sources */,
+				9ED26007206E3CE30027D76C /* RideHistoryDetailsViewController.swift in Sources */,
+				9ED26011206EEDFA0027D76C /* DriverData.swift in Sources */,
 				9EE29DBF206CF65C00761A5E /* UnitConverterPace.swift in Sources */,
 				9EA3B825206C139800801FDB /* RideSetupViewController.swift in Sources */,
 				9EA3B852206C15C400801FDB /* Extensions.swift in Sources */,
-				9E4940B3206DA448006B232E /* MainTabBarController.swift in Sources */,
 				9EE29DBA206CE3CC00761A5E /* PickMeModel.xcdatamodeld in Sources */,
 				9EE29DBD206CE3EF00761A5E /* CoreDataManager.swift in Sources */,
 				9EA3B823206C139800801FDB /* AppDelegate.swift in Sources */,

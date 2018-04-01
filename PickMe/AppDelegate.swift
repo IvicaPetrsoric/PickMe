@@ -17,27 +17,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // fix for when deleting rows white background appears
+        UITableViewCell.appearance().backgroundColor = .clear
+        
         window = UIWindow()
         window?.makeKeyAndVisible()
         
         let locationManager = LocationManager.shared
-        locationManager.requestWhenInUseAuthorization()
+//        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().barTintColor = .tealColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-//        UINavigationBar.appearance().prefersLargeTitles = true
-//        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        
-        //        UITabBar.appearance().isTranslucent = false
-        //        UITabBar.appearance().barTintColor = .green
-        //        UITabBar.appearance().tintColor = .white
-        //
-        //        window?.rootViewController = MainTabBarViewController()
+        UINavigationBar.appearance().prefersLargeTitles = true
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,
+                                                                 NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 30)]
         
         window?.rootViewController = UINavigationController(rootViewController: RideSetupViewController())
-//        window?.rootViewController = UINavigationController(rootViewController: RideStartedViewController())
         
         return true
     }
