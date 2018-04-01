@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         UINavigationBar.appearance().prefersLargeTitles = true
         UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white,
-                                                                 NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 30)]
+                                                                 NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 25)]
         
         window?.rootViewController = UINavigationController(rootViewController: RideSetupViewController())
         

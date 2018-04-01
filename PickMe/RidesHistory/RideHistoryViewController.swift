@@ -21,7 +21,7 @@ class RideHistoryViewController: UITableViewController {
         
         view.backgroundColor = .darkBlue
         
-        navigationItem.title = "History"
+        navigationItem.title = "Ride Historys".localized
         
         tableView.backgroundColor = .darkBlue
         tableView.tableFooterView = UIView()
@@ -60,7 +60,7 @@ class RideHistoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in           
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete".localized) { (_, indexPath) in
 
             CoreDataManager.shared.deleteRide(rideData: self.rides[indexPath.row])
             

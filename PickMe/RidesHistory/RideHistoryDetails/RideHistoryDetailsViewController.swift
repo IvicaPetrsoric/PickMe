@@ -25,14 +25,16 @@ class RideHistoryDetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Details"
-        
-        loadMap()
+        navigationItem.title = "Ride Details".localized
         
         tableView.backgroundColor = .darkBlue
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.register(RideHistoryDetailsCell.self, forCellReuseIdentifier: cellId)
+        
+        loadMap()
+        
+
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,22 +44,22 @@ class RideHistoryDetailsViewController: UITableViewController {
 
         return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RideHistoryDetailsCell
         cell.rideInfo = ride
         cell.selectionStyle = .none
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
-    
+
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let locations = ride?.locations, locations.count > 0 else {
             let label = UILabel()
-            label.text = "No Ride Locations!"
+            label.text = "No Ride Locations!".localized
             label.textColor = .white
             label.textAlignment = .center
             label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -65,7 +67,7 @@ class RideHistoryDetailsViewController: UITableViewController {
         }
         return mapView
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return view.frame.width
     }
@@ -91,10 +93,10 @@ class RideHistoryDetailsViewController: UITableViewController {
     
     private func loadMap() {
         guard let locations = ride?.locations, locations.count > 0, let region = mapRegion() else {
-            let alert = UIAlertController(title: "Error",
-                                          message: "Ride, this ride has no locations saved",
+            let alert = UIAlertController(title: "Error".localized,
+                                          message: "This ride has no locations saved".localized,
                                           preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            alert.addAction(UIAlertAction(title: "OK".localized, style: .cancel))
             present(alert, animated: true)
             return
         }
@@ -126,6 +128,12 @@ class RideHistoryDetailsViewController: UITableViewController {
         return MKCoordinateRegion(center: center, span: span)
     }
     
+    private enum PinAnnotinations: String {
+        case passanger = "Passanger"
+        case start = "Start"
+        case end = "End"
+    }
+    
     private func polyLine() -> MKPolyline {
         guard let locations = ride?.locations else {
             return MKPolyline()
@@ -135,18 +143,27 @@ class RideHistoryDetailsViewController: UITableViewController {
             let location = location as! Location
             
             if location.status == rideStatus.pickedUp.rawValue {
-                dropPinZoomIn(placemark: MKPlacemark(coordinate: CLLocationCoordinate2DMake(location.latitude, location.longitude)))
+                dropPinZoomIn(placemark:
+                    MKPlacemark(coordinate: CLLocationCoordinate2DMake(location.latitude, location.longitude)),
+                              title: "Passanger".localized)
             }
-
             return CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
         }
+        
+        if coords.count > 0 {
+            if let firstCoords = coords.first, let lastCoords = coords.last{
+                dropPinZoomIn(placemark: MKPlacemark(coordinate: firstCoords), title: "Start".localized)
+                dropPinZoomIn(placemark: MKPlacemark(coordinate: lastCoords), title: "End".localized)
+            }
+        }
+        
         return MKPolyline(coordinates: coords, count: coords.count)
     }
     
-    private func dropPinZoomIn(placemark: MKPlacemark){
+    private func dropPinZoomIn(placemark: MKPlacemark, title: String){
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
-        annotation.title = "Passanger"
+        annotation.title = title
         mapView.addAnnotation(annotation)
     }
     
@@ -177,6 +194,4 @@ extension RideHistoryDetailsViewController: MKMapViewDelegate {
         return pinView
     }
     
-    func mapViewDidFailLoadingMap(_ mapView: MKMapView, withError error: Error) {
-    }
 }

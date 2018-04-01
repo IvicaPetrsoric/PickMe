@@ -1,0 +1,58 @@
+/* 
+  Localizable.strings
+  PickMe
+
+  Created by Ivica Petrsoric on 01/04/2018.
+  Copyright © 2018 Ivica Petrsoric. All rights reserved.
+*/
+
+// MARK: RideSetupViewController
+"Ride Setup" = "Ride Setup";
+"Enter Start Location" = "Enter Start Location";
+"Enter End Location" = "Enter End Location";
+"Enter Total Passangers" = "Enter Total Passangers";
+"Start Ride" = "Start Ride";
+
+//MARK: RideStartedViewController
+"Passanger Picked Up" = "Passanger Picked Up";
+"Stop Over" = "Stop Over";
+"End Ride" = "End Ride";
+"Continue Ride" = "Continue Ride";
+"Status: New Passanger" = "Status: New Passanger";
+"Status: Stop Over" = "Status: Stop Over";
+"Status: Driving" = "Status: Driving";
+
+
+// MARK: DriverDetailViewController
+"Name:" = "Name";
+"Enter name" = "Enter name";
+"Age:" = "Age:";
+"Enter age" = "Enter age";
+"Car registration:" = "Car registration:";
+"Enter car registration" = "Enter car registration";
+"Driver Profile" = "Driver Profile";
+
+// MARK: RideHistoryViewController
+"Ride Historys" = "Ride History";
+"Delete" = "Delete";
+"No Ride History!" = "No Ride History!";
+
+// MARK: RideHistoryCell
+"Start Location: " = "Start Location: ";
+"End Location: " = "End Location: ";
+"Passangers: " = "Passangers: ";
+
+// MARK: RideHistoryDetailsViewController
+"Ride Details" = "Ride Details";
+"No Ride Locations!" = "No Ride Locations!";
+"Error" = "Error";
+"This ride has no locations saved" = "This ride has no locations saved";
+"OK" = "OK";
+"Passanger" = "Passanger";
+"Start" = "Start";
+"End" = "End";
+
+// MARK: RideHistoryDetailsCell
+"Distance: " = "Distance: ";
+"Time Start: " = "Time start: ";
+"Time End: " = "Time End: ";

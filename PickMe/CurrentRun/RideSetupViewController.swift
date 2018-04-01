@@ -10,21 +10,9 @@ import UIKit
 
 class RideSetupViewController: UIViewController {
     
-    enum placeholderTextFields: String {
-        case start = "Enter start location"
-        case end = "Enter end location"
-        case passangers = "Enter total passangers:"
-    }
-    
-    enum startTextOfTextFields: String {
-        case start = "Start location "
-        case end = "End location "
-        case passangers = "Passangers: "
-    }
-    
     let locationStartField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = placeholderTextFields.start.rawValue
+        textField.placeholder = "Enter Start Location".localized
         textField.backgroundColor = .lightBlue
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
@@ -36,7 +24,7 @@ class RideSetupViewController: UIViewController {
     
     let locationEndField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = placeholderTextFields.end.rawValue
+        textField.placeholder = "Enter End Location".localized
         textField.backgroundColor = .lightBlue
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
@@ -48,7 +36,7 @@ class RideSetupViewController: UIViewController {
     
     let passangersField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = placeholderTextFields.passangers.rawValue
+        textField.placeholder = "Enter Total Passangers".localized
         textField.backgroundColor = .lightBlue
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
@@ -61,9 +49,9 @@ class RideSetupViewController: UIViewController {
     
     let startRideButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Start Ride", for: .normal)
+        button.setTitle("Start Ride".localized, for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 32)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
         button.backgroundColor = .lightGreen
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
@@ -129,13 +117,13 @@ class RideSetupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Ride Setup"
+        navigationItem.title = "Ride Setup".localized
         
         view.backgroundColor = .darkBlue
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeKeyboard)))
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "profileUnselected"), style: .plain, target: self, action: #selector(showDriverProfile))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "History", style: .plain, target: self, action: #selector(showRideHistorList))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "profile"), style: .plain, target: self, action: #selector(showDriverProfile))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "history"), style: .plain, target: self, action: #selector(showRideHistorList))
         
         setupViews()
         
@@ -154,21 +142,6 @@ class RideSetupViewController: UIViewController {
         navigationController?.pushViewController(rideHistory, animated: true)
     }
     
-    @objc private func loadData() {
-        let rides = CoreDataManager.shared.fetchRides()
-        print(rides)
-//        let locations = rides.first?.locations
-//        print(locations)
-//        print(rides)
-//        for i in (rides.first?.locations.ti)! {
-//            print((i as AnyObject).latitude)
-//        }
-    }
-    
-    @objc private func eraseDB() {
-        CoreDataManager.shared.deleteDB()
-    }
-    
     @objc private func removeKeyboard() {
         view.endEditing(true)
     }
@@ -181,15 +154,14 @@ class RideSetupViewController: UIViewController {
         
         locationEndField.alpha = 0
         passangersField.alpha = 0
-//        startRideButton.alpha = 0
         
-        locationStartField.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 44)
+        locationStartField.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 44)
         
         locationEndField.anchor(top: locationStartField.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 44)
         
         passangersField.anchor(top: locationEndField.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 44)
         
-        startRideButton.anchor(top: passangersField.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 48, paddingLeft: 44, paddingBottom: 0, paddingRight: 44, width: 0, height: 64)
+        startRideButton.anchor(top: passangersField.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 24, paddingLeft: 44, paddingBottom: 0, paddingRight: 44, width: 0, height: 52)
     }
 
 }

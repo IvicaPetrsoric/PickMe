@@ -13,16 +13,16 @@ class RideHistoryCell: BaseCell {
     var ride: Ride? {
         didSet{
             if let locStart = ride?.locStart, let locEnd = ride?.locEnd {
-                let attributedText = NSMutableAttributedString(string: "Start Location: ", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
+                let attributedText = NSMutableAttributedString(string: "Start Location: ".localized, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
                 attributedText.append(NSAttributedString(string: locStart + "\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
-                attributedText.append(NSAttributedString(string: "End Location: ", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]))
+                attributedText.append(NSAttributedString(string: "End Location: ".localized, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)]))
                 attributedText.append(NSAttributedString(string: locEnd, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
                 
                 locationLabel.attributedText = attributedText
             }
             
             if let totalPassangers = ride?.passangers {
-                passangersLabel.text = "Passangers: \(totalPassangers)"
+                passangersLabel.text = "Passangers: ".localized + "\(totalPassangers)"
             }
             
             if let timestamps = ride?.timestamp {

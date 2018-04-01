@@ -26,7 +26,7 @@ class RideStartedViewController: UIViewController {
     
     let passangerPickedButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Passanger picked up", for: .normal)
+        button.setTitle("Passanger Picked Up".localized, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.backgroundColor = .lightOrange
@@ -38,7 +38,7 @@ class RideStartedViewController: UIViewController {
     
     let stopOverButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Stop over", for: .normal)
+        button.setTitle("Stop Over".localized, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.backgroundColor = .midBlue
@@ -50,7 +50,7 @@ class RideStartedViewController: UIViewController {
     
     let endRidePickedButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("End ride", for: .normal)
+        button.setTitle("End Ride".localized, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.backgroundColor = .lightRed
@@ -62,7 +62,7 @@ class RideStartedViewController: UIViewController {
     
     let continueRideButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Continue ride", for: .normal)
+        button.setTitle("Continue Ride".localized, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.backgroundColor = .lightGreen
@@ -81,16 +81,9 @@ class RideStartedViewController: UIViewController {
     }()
     
     @objc private func handlepassangerPicked() {
-        navigationItem.title = "Status: New Passanger"
+        navigationItem.title = "Status: New Passanger".localized
         stopMonitoringLocation()
         updateWorkflowAction(byStatus: .pickedUp)
-
-
-        if let pinCoor = locationList.last?.coordinate{
-            dropPinZoomIn(placemark: MKPlacemark(coordinate: pinCoor))
-        } else if let pinCoor = locationManager.location?.coordinate {
-            dropPinZoomIn(placemark: MKPlacemark(coordinate: pinCoor))
-        }
 
         UIView.animate(withDuration: 0.3) {
             self.balackBackgroundMask.alpha = 0.7
@@ -101,8 +94,14 @@ class RideStartedViewController: UIViewController {
     }
     
     @objc private func handleStopOver() {
-        navigationItem.title = "Status: Stop Over"
+        navigationItem.title = "Status: Stop Over".localized
         updateWorkflowAction(byStatus: .stopOver)
+        
+        if let pinCoor = locationList.last?.coordinate{
+            dropPinZoomIn(placemark: MKPlacemark(coordinate: pinCoor))
+        } else if let pinCoor = locationManager.location?.coordinate {
+            dropPinZoomIn(placemark: MKPlacemark(coordinate: pinCoor))
+        }
 
         UIView.animate(withDuration: 0.3) {
             self.stopOverButton.transform = CGAffineTransform(translationX: -self.view.frame.width / 2, y: 0)
@@ -112,7 +111,7 @@ class RideStartedViewController: UIViewController {
     }
     
     @objc private func handleContineRide() {
-        navigationItem.title = "Status: Driving"
+        navigationItem.title = "Status: Driving".localized
         resumeMonitoringLocation()
         updateWorkflowAction(byStatus: .continueRide)
 
@@ -141,6 +140,8 @@ class RideStartedViewController: UIViewController {
     
     @objc private func handleEndRide() {
         updateWorkflowAction(byStatus: .stopOver)
+        locationManager.allowsBackgroundLocationUpdates = false
+        locationManager.pausesLocationUpdatesAutomatically = true
         dismiss(animated: true, completion: nil)
     }
     
@@ -159,7 +160,7 @@ class RideStartedViewController: UIViewController {
         
         stopOverButton.transform = CGAffineTransform(translationX: -view.frame.width / 2, y: 0)
         endRidePickedButton.transform = CGAffineTransform(translationX: view.frame.width / 2, y: 0)
-        continueRideButton.transform = CGAffineTransform(translationX: 0, y: view.frame.width / 5)
+        continueRideButton.transform = CGAffineTransform(translationX: 0, y: view.frame.width / 4)
         
         mapView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
@@ -171,7 +172,7 @@ class RideStartedViewController: UIViewController {
         
         endRidePickedButton.anchor(top: nil, left: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 8, paddingRight: 8, width: view.frame.width / 2 - 16, height: 44)
         
-        continueRideButton.anchor(top: nil, left: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: view.frame.width / 2 - 16, height: 44)
+        continueRideButton.anchor(top: nil, left: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: view.frame.width * 0.75, height: 44)
         continueRideButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         detailsLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 0, height: 100)
@@ -208,7 +209,7 @@ class RideStartedViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .darkBlue
-        navigationItem.title = "Status: Driving"
+        navigationItem.title = "Status: Driving".localized
         
         setupViews()
         startRide()
@@ -277,6 +278,8 @@ class RideStartedViewController: UIViewController {
         locationManager.delegate = self
         locationManager.activityType = .automotiveNavigation
         locationManager.distanceFilter = 10
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.startUpdatingLocation()
         
         if let startLocation = locationManager.location?.coordinate {
@@ -288,7 +291,7 @@ class RideStartedViewController: UIViewController {
     private func dropPinZoomIn(placemark: MKPlacemark){
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
-        annotation.title = "Passanger"
+        annotation.title = "Passanger".localized
         
         let newLocationData = CurrentRideLocations(bookingId: currentRideId,
                                                    status: RideStatus.pickedUp.rawValue,

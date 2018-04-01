@@ -12,7 +12,7 @@ class DriverDetailViewController: UIViewController {
     
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "plusPhoto"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "plusImage"), for: .normal)
         button.tintColor = .lightBlue
         button.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFill
@@ -22,12 +22,13 @@ class DriverDetailViewController: UIViewController {
     @objc func handlePlusPhoto(){
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
         present(imagePickerController, animated: true, completion: nil)
     }
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Name:"
+        label.text = "Name:".localized
         label.font = UIFont.boldSystemFont(ofSize: 13)
         label.textColor = .lightBlue
         return label
@@ -35,7 +36,7 @@ class DriverDetailViewController: UIViewController {
     
     let driverNameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Enter name"
+        textField.placeholder = "Enter name".localized
         textField.backgroundColor = .lightBlue
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
@@ -46,7 +47,7 @@ class DriverDetailViewController: UIViewController {
     
     let ageLabel: UILabel = {
         let label = UILabel()
-        label.text = "Age:"
+        label.text = "Age:".localized
         label.font = UIFont.boldSystemFont(ofSize: 13)
         label.textColor = .lightBlue
         return label
@@ -54,7 +55,7 @@ class DriverDetailViewController: UIViewController {
     
     let driverAgeTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Enter age"
+        textField.placeholder = "Enter age".localized
         textField.backgroundColor = .lightBlue
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
@@ -66,7 +67,7 @@ class DriverDetailViewController: UIViewController {
     
     let carRegLabel: UILabel = {
         let label = UILabel()
-        label.text = "Car registration:"
+        label.text = "Car registration:".localized
         label.font = UIFont.boldSystemFont(ofSize: 13)
         label.textColor = .lightBlue
         return label
@@ -74,7 +75,7 @@ class DriverDetailViewController: UIViewController {
     
     let driverCarRegTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Enter car registration"
+        textField.placeholder = "Enter car registration".localized
         textField.backgroundColor = .lightBlue
         textField.borderStyle = .roundedRect
         textField.textAlignment = .center
@@ -83,35 +84,21 @@ class DriverDetailViewController: UIViewController {
         return textField
     }()
     
-    let emailTextField: UITextField = {
-        let tf =  UITextField()
-        tf.placeholder = "Email"
-        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
-        tf.borderStyle = .roundedRect
-        tf.font = UIFont.systemFont(ofSize: 14)
-        return tf
-    }()
-    
     private var driver: Driver?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .darkBlue
-        navigationItem.title = "Driver Profile"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Lang", style: .plain, target: self, action: #selector(handleChangeLanguage))
+        navigationItem.title = "Driver Profile".localized
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(removeKeyboard)))
         
         fetchDriverData()
         setupViews()
+        roundCornerPickImage()
     }
-    
-    @objc private func handleChangeLanguage() {
-        let languageController = LanguagesViewController()
-        present(languageController, animated: true, completion: nil)
-    }
-    
+        
     @objc private func removeKeyboard() {
         view.endEditing(true)
     }
@@ -129,7 +116,6 @@ class DriverDetailViewController: UIViewController {
         guard let image = driver?.image else { return }
         
         plusPhotoButton.setImage(UIImage(data: image)?.withRenderingMode(.alwaysOriginal), for: .normal)
-        roundCornerPickImage()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -166,7 +152,7 @@ class DriverDetailViewController: UIViewController {
         view.addSubview(plusPhotoButton)
         view.addSubview(stackViewTextFields)
     
-        plusPhotoButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 90, height: 90)
+        plusPhotoButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 70, height: 70)
         plusPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         stackViewLabels.anchor(top: plusPhotoButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 120, height: 150)
@@ -175,7 +161,7 @@ class DriverDetailViewController: UIViewController {
     }
     
     private func roundCornerPickImage() {
-        plusPhotoButton.layer.cornerRadius = 45
+        plusPhotoButton.layer.cornerRadius = 35
         plusPhotoButton.layer.masksToBounds = true
         plusPhotoButton.layer.borderColor = UIColor.lightBlue.cgColor
         plusPhotoButton.layer.borderWidth = 3

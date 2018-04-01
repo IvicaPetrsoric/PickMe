@@ -107,19 +107,6 @@ class CoreDataManager {
         }
     }
     
-    func deleteDB() {
-        let context = persistentContainer.viewContext
-        
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Ride.fetchRequest())
-        
-        do{
-            try context.execute(batchDeleteRequest)
-            
-        }catch let delErr {
-            print("failed to delete objects from Core Data:", delErr)
-        }
-    }
-    
     // MARK: Driver
     func createDriver(data: DriverData) {
         let context = persistentContainer.viewContext
@@ -167,6 +154,5 @@ class CoreDataManager {
         }
     }
     
-
     
 }

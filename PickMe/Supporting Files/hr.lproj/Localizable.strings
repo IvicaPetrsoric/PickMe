@@ -1,0 +1,49 @@
+// MARK: RideSetupViewController
+"Ride Setup" = "Postavke vožnje";
+"Enter Start Location" = "Unesite polazište";
+"Enter End Location" = "Unesite odredište";
+"Enter Total Passangers" = "Unesite broj putnika";
+"Start Ride" = "Kreni s vožnjom";
+
+//MARK: RideStartedViewController
+"Passanger Picked Up" = "Pokupi putnika";
+"Stop Over" = "Stani sa strane";
+"End Ride" = "Kraj vožnje";
+"Continue Ride" = "Nastavi s vožnjom";
+"Status: New Passanger" = "Status: novi putnik";
+"Status: Stop Over" = "Status: stani sa strane";
+"Status: Driving" = "Status: vožnja";
+
+// MARK: DriverDetailViewController
+"Name:" = "Ime:";
+"Enter name" = "Unesite ime";
+"Age:" = "Godin:";
+"Enter age" = "Unesite godine";
+"Car registration:" = "Registracija:";
+"Enter car registration" = "Unesite registraciju vozila";
+"Driver Profile" = "Profil vozača";
+
+// MARK: RideHistoryViewController
+"Ride Historys" = "Povijest vožnji";
+"Delete" = "Izbriši";
+"No Ride History!" = "Ne postoje spremljene vožnje!";
+
+// MARK: RideHistoryCell
+"Start Location: " = "Polazište: ";
+"End Location: " = "Odredište: ";
+"Passangers: " = "Broj putnika: ";
+
+// MARK: RideHistoryDetailsViewController
+"Ride Details" = "Detalji vožnje";
+"No Ride Locations!" = "Ne postoje spremljene lokacije";
+"Error" = "Greška";
+"This ride has no locations saved" = "Ova vožnja nema spremljenih lokacija";
+"OK" = "OK";
+"Passanger" = "Putnik";
+"Start" = "Početak";
+"End" = "Kraj";
+
+// MARK: RideHistoryDetailsCell
+"Distance: " = "Udaljenost: ";
+"Time Start: " = "Početak vožnje: ";
+"Time End: " = "Kraj vožnje: ";
