@@ -21,7 +21,7 @@ struct FormatDisplay {
     
     enum DateFormat: String {
         case HHmm = "HH:mm"
-        
+        case MMddyyyy = "MM.dd.yyyy"
     }
     
     static func time(date: Date, format: String) -> String {
@@ -30,12 +30,6 @@ struct FormatDisplay {
         return dateFormater.string(from: date)
     }
 
-//    static func time(_ seconds: Int) -> String {
-//        let formatter = DateComponentsFormatter()
-//        formatter.allowedUnits = [.hour, .minute, .second]
-//        formatter.unitsStyle = .positional
-//        formatter.zeroFormattingBehavior = .pad
-//        return formatter.string(from: TimeInterval(seconds))!
-//    }
+
 
 }

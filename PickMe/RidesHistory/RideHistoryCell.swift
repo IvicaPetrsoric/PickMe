@@ -26,9 +26,7 @@ class RideHistoryCell: BaseCell {
             }
             
             if let timestamps = ride?.timestamp {
-                let dateFormater = DateFormatter()
-                dateFormater.dateFormat = "MM.dd.yyyy"
-                timestampLabel.text = "\(dateFormater.string(from: timestamps))"
+                timestampLabel.text =  FormatDisplay.time(date: timestamps, format: FormatDisplay.DateFormat.MMddyyyy.rawValue)
             }
         }
     }

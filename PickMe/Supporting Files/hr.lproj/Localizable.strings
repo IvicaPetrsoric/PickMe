@@ -5,6 +5,11 @@
 "Enter Total Passangers" = "Unesite broj putnika";
 "Start Ride" = "Kreni s vožnjom";
 
+// MARK: Validations
+"Missing Start Location" = "Unesite početno stajalište";
+"Missing End Location" = "Unesite krajnje odredište";
+"Missing Number of Passangers" = "Unesite broj putnika";
+
 //MARK: RideStartedViewController
 "Passanger Picked Up" = "Pokupi putnika";
 "Stop Over" = "Stani sa strane";

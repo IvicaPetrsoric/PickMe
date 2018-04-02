@@ -12,7 +12,7 @@ struct CurrentRideDetails {
     let bookingId: Int
     let locStart: String
     let locEnd: String
-    let passangers: Int
+    let passangers: String
     let timeStart: Date
 }
 

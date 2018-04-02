@@ -55,7 +55,9 @@ extension UIView{
 extension UIViewController{
     
     enum AlertMessage: String{
-        case rideHasNoLocations = "This ride has no locations saved"
+        case missingStartLoc = "Missing Start Location"
+        case missingEndLoc = "Missing End Location"
+        case missingPassngers = "Missing Number of Passangers"
     }
     
     func showAllert(message: String){
@@ -70,6 +72,14 @@ extension String {
     
     var localized: String {
         return NSLocalizedString(self, comment: "")
+    }
+    
+    func isEmptyOrWhitespace() -> Bool {
+        if(self.isEmpty) {
+            return true
+        }
+        
+        return self.trimmingCharacters(in: .whitespaces).isEmpty
     }
     
 }

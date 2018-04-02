@@ -13,6 +13,11 @@
 "Enter Total Passangers" = "Enter Total Passangers";
 "Start Ride" = "Start Ride";
 
+// MARK: Validations
+"Missing Start Location" = "Missing Start Location";
+"Missing End Location" = "Missing End Location";
+"Missing Number of Passangers" = "Missing Number of Passangers";
+
 //MARK: RideStartedViewController
 "Passanger Picked Up" = "Passanger Picked Up";
 "Stop Over" = "Stop Over";
@@ -21,7 +26,6 @@
 "Status: New Passanger" = "Status: New Passanger";
 "Status: Stop Over" = "Status: Stop Over";
 "Status: Driving" = "Status: Driving";
-
 
 // MARK: DriverDetailViewController
 "Name:" = "Name";
