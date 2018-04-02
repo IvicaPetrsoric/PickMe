@@ -327,7 +327,7 @@ extension RideStartedViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for newLocation in locations {
             let howRecent = newLocation.timestamp.timeIntervalSinceNow
-            guard newLocation.horizontalAccuracy < 10 && abs(howRecent) < pauseTimeOfGPS else { continue }
+            guard abs(howRecent) < pauseTimeOfGPS else { continue }
             
             if let lastLocation = locationList.last {
                 let delta = newLocation.distance(from: lastLocation)

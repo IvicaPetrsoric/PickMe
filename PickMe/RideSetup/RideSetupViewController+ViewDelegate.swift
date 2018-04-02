@@ -22,7 +22,7 @@ extension RideSetupViewController: RideSetupViewDelegate {
             return
         }
         
-        let currentRideId = 1
+        let currentRideId = userDefaults.load(key: RideUserDefaults.UserKey.rideID)
         
         let newRide = CurrentRideDetails(bookingId: currentRideId, locStart: startLoc, locEnd: endLoc, passangers: passangers, timeStart: Date())
         CoreDataManager.shared.createRide(currentRideDetails: newRide)
@@ -32,7 +32,10 @@ extension RideSetupViewController: RideSetupViewDelegate {
         rideStartedViewController.currentRideId = currentRideId
         
         let navController = CustomNavigationController(rootViewController: rideStartedViewController)
-        present(navController, animated: true, completion: nil)
+        present(navController, animated: true) {
+            let newValue = currentRideId + 1
+            self.userDefaults.save(value: newValue, key: RideUserDefaults.UserKey.rideID)
+        }
     }
     
 }
