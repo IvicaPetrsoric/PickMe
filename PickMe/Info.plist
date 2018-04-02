@@ -7,7 +7,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Pick me needs access to your location in order to record drive route!</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Enable usage of local images</string>
+	<string>Pick me needs access to your local storage of images in order to update driver profile image!</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

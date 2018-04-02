@@ -16,7 +16,7 @@ struct CurrentRideDetails {
     let timeStart: Date
 }
 
-struct CurrentRideLocations: CurrentRideDetails {
+struct CurrentRideLocations {
     
     let bookingId: Int
     let status: String

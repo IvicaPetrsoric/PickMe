@@ -41,7 +41,7 @@
 		9EE29DBA206CE3CC00761A5E /* PickMeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EE29DB8206CE3CC00761A5E /* PickMeModel.xcdatamodeld */; };
 		9EE29DBD206CE3EF00761A5E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE29DBC206CE3EF00761A5E /* CoreDataManager.swift */; };
 		9EE29DC1206CF86200761A5E /* FormatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE29DC0206CF86200761A5E /* FormatDisplay.swift */; };
-		9EE29DC5206D7E1400761A5E /* CurrentRideDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE29DC4206D7E1300761A5E /* CurrentRideDetails.swift */; };
+		9EE29DC5206D7E1400761A5E /* CurrentRideData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE29DC4206D7E1300761A5E /* CurrentRideData.swift */; };
 		9EF929DC2070EC7500D1A078 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9EF929DE2070EC7500D1A078 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +103,7 @@
 		9EE29DB9206CE3CC00761A5E /* PickMeModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PickMeModel.xcdatamodel; sourceTree = "<group>"; };
 		9EE29DBC206CE3EF00761A5E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		9EE29DC0206CF86200761A5E /* FormatDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatDisplay.swift; sourceTree = "<group>"; };
-		9EE29DC4206D7E1300761A5E /* CurrentRideDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRideDetails.swift; sourceTree = "<group>"; };
+		9EE29DC4206D7E1300761A5E /* CurrentRideData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRideData.swift; sourceTree = "<group>"; };
 		9EF929DA2070EC6E00D1A078 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Main.strings; sourceTree = "<group>"; };
 		9EF929DB2070EC6E00D1A078 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		9EF929DD2070EC7500D1A078 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 				9EB95CE42071CD4E0081ECEC /* RideStartedViewController+LocationDelegate.swift */,
 				9EA9753F2071BBCA00435FA6 /* RideStartedView.swift */,
 				9EA975412071BE5B00435FA6 /* RideStartedView+MapViewDelegate.swift */,
-				9EE29DC4206D7E1300761A5E /* CurrentRideDetails.swift */,
+				9EE29DC4206D7E1300761A5E /* CurrentRideData.swift */,
 			);
 			path = CurrentRide;
 			sourceTree = "<group>";
@@ -439,7 +439,7 @@
 				9EE29DB7206CE2AA00761A5E /* LocationManager.swift in Sources */,
 				9E4940BA206DAAA9006B232E /* RideHistoryCell.swift in Sources */,
 				9EA975402071BBCA00435FA6 /* RideStartedView.swift in Sources */,
-				9EE29DC5206D7E1400761A5E /* CurrentRideDetails.swift in Sources */,
+				9EE29DC5206D7E1400761A5E /* CurrentRideData.swift in Sources */,
 				9ED2600E206E9B420027D76C /* DriverDetailViewController.swift in Sources */,
 				9EE29DC1206CF86200761A5E /* FormatDisplay.swift in Sources */,
 				9EE171C320717CDC00332258 /* RideHistoryDetailsViewController+MapViewDelegate.swift in Sources */,
