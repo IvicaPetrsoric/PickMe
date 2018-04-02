@@ -16,3 +16,15 @@ struct CurrentRideDetails {
     let timeStart: Date
 }
 
+struct CurrentRideLocations: CurrentRideDetails {
+    
+    let bookingId: Int
+    let status: String
+    var sendOnServer: Bool
+    let latitude: Double
+    let longitude: Double
+    let timestamp: Date
+    let distance: String
+    
+}
+

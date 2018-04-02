@@ -28,7 +28,6 @@ extension RideSetupViewController: RideSetupViewDelegate {
         CoreDataManager.shared.createRide(currentRideDetails: newRide)
         
         let rideStartedViewController = RideStartedViewController()
-        rideStartedViewController.newRide = newRide
         rideStartedViewController.currentRideId = currentRideId
         
         let navController = CustomNavigationController(rootViewController: rideStartedViewController)

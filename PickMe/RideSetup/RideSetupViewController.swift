@@ -16,12 +16,9 @@ class RideSetupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Ride Setup".localized
-        
         view.backgroundColor = .darkBlue
         
-        print(userDefaults.load(key: RideUserDefaults.UserKey.rideID))
-        
+        navigationItem.title = "Ride Setup".localized
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "profile"), style: .plain, target: self, action: #selector(showDriverProfile))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "history"), style: .plain, target: self, action: #selector(showRideHistorList))
         
@@ -43,7 +40,5 @@ class RideSetupViewController: UIViewController {
         view.addSubview(rideSetupView)
         rideSetupView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     }
-    
-
 
 }
