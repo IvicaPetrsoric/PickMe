@@ -37,7 +37,7 @@ In Ride history view is show a list of past Rides ordered by date. Some basic in
 
 All rides can be deleted by swiping to the left on specific element on list. Main feature of this view is to check data in database and send it to server if it is needed.
 
- <img src="images/history.jpg" widht= 150 height = 300  hspace="30" />  <img src="images/historyDetails1.jpg" widht= 150 height = 300  hspace="30" /> 
+ <img src="images/history.jpg" widht= 150 height = 300  hspace="30" />  <img src="images/historyDetails.jpg" widht= 150 height = 300  hspace="30" /> 
  
  ## Driver Profile
  
