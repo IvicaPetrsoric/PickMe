@@ -13,7 +13,7 @@ Fields to enter:
 - Enter end location
 - Enter total passengers 
 
- <img src="images/mainStart.jpg" widht= 150 height = 300  hspace="30" />  <img src="images/mainError.jpg" widht= 150 height = 300  hspace="30" />  <img src="images/ mainEnteredAll.jpg" widht= 150 height = 300  hspace="30" />
+ <img src="images/mainStart.jpg" widht= 150 height = 300  hspace="30" />  <img src="images/mainError.jpg" widht= 150 height = 300  hspace="30" />  <img src="images/ mainPrepared.jpg" widht= 150 height = 300  hspace="30" />
 
  ## Current Raid 
  
