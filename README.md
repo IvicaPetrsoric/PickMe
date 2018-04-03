@@ -29,7 +29,7 @@ Fields to enter:
 
  <img src="images/ride1.jpg" widht= 150 height = 300  hspace="30" />  <img src="images/ride2.jpg" widht= 150 height = 300  hspace="30" /> <img src="images/ride3.jpg" widht= 150 height = 300  hspace="30" />
 
-## Ride history
+## Ride History
 
 In the Ride setup View two options are available to be shown, users Ride history and user profile. Ride history can be entered while tapping left bar button on navigation controller, while Driver profile is available with right bar button.
 
@@ -39,7 +39,7 @@ All rides can be deleted by swiping to the left on specific element on list. Mai
 
  <img src="images/history.jpg" widht= 150 height = 300  hspace="30" />  <img src="images/historyDetails1.jpg" widht= 150 height = 300  hspace="30" /> 
  
- ## Driver profile
+ ## Driver Profile
  
 This view shows basic driver data like name, age, car registration and driver picked image. 
 
