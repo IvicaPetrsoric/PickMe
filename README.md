@@ -46,7 +46,7 @@ This view shows basic driver data like name, age, car registration and driver pi
  <img src="images/driverProfile.jpg" widht= 150 height = 300  hspace="30" /> 
 
 
-# Main features:
+# Main Features:
 - CoreLocation, tracking GPS location of user
 - Sending data of location and workflow actions to server
 - Background tracking user location
