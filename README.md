@@ -13,8 +13,8 @@ Fields to enter:
 - Enter end location
 - Enter total passengers 
 
- <img src="images/mainStart.jpg" widht= 150 height = 300  hspace="30" />  <img src="images/mainError.jpg" widht= 150 height = 300  hspace="30" />
- 
+ <img src="images/mainStart.jpg" widht= 150 height = 300  hspace="30" />  <img src="images/mainError.jpg" widht= 150 height = 300  hspace="30" /> <img src="images/ mainEnteredAll.jpg" widht= 150 height = 300  hspace="30" />
+
  ## Current Raid 
  
  After all data needed to enter ride was entered the ride starts. If web connection is available user location and drive path will be shown on map. Driver can use few options showed in the next list by pressing simple buttons.
@@ -52,4 +52,5 @@ This view shows basic driver data like name, age, car registration and driver pi
 - Background tracking user location
 - CoreData, persistent storage of ride details
 - AutoLayout with code
+- Localization (English, Croatian)
 
