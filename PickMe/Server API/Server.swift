@@ -10,7 +10,7 @@ import Foundation
 
 class Server {
     
-    private let baseUrl = "https://test.mother.i-ways.hr/?json=1"
+    private let baseUrl = "https://test.mother.i-ways.hr"
     
     private enum Attributes: String {
         case bookingId = "bookingId="
